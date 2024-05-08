@@ -4,16 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textSize="100sp"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/placeHolder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        android:src="@drawable/placeholder"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/surahRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/surah_item"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimaryVariant"
+        android:theme="?attr/actionBarTheme"
+        android:alpha="0.8"
+        app:layout_constraintCircleRadius="@dimen/space12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="مَا أَنزَلْنَا عَلَيْكَ الْقُرْآنَ لِتَشْقَى"
+        android:textColor="@color/white"
+        android:textSize="@dimen/space24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
