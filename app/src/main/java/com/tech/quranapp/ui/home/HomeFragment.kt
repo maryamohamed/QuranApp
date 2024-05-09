@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.tech.care.base.BaseFragment
-import com.tech.quranapp.data.remote.model.Data
+import com.tech.quranapp.data.remote.model.SurahData
 import com.tech.quranapp.data.remote.model.SurahModel
 import com.tech.quranapp.databinding.FragmentHomeBinding
 import com.tech.quranapp.util.ProgressLoading
@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 NetworkState.Status.SUCCESS -> {
                     val surahModel = it.data as SurahModel
-                    homeAdapter = HomeAdapter(surahModel.data as List<Data>)
+                    homeAdapter = HomeAdapter(surahModel.data as List<SurahData>)
                     if (surahModel.data.isEmpty()) {
                         binding?.surahRecyclerView?.visibility = View.GONE
                         binding?.placeHolder?.visibility = View.VISIBLE

@@ -7,7 +7,7 @@ data class SurahModel(
     @SerializedName("code")
     val code: Int? = null,
     @SerializedName("data")
-    val `data`: List<Data?>? = null,
+    val `data`: List<SurahData?>? = null,
     @SerializedName("status")
     val status: String? = null
 )

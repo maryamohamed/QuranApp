@@ -3,7 +3,7 @@ package com.tech.quranapp.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class SurahData(
     @SerializedName("englishName")
     val englishName: String? = null,
     @SerializedName("englishNameTranslation")
