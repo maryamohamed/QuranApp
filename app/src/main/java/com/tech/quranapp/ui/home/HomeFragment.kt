@@ -5,17 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.tech.care.base.BaseFragment
+import com.tech.quranapp.R
 import com.tech.quranapp.data.remote.model.SurahData
 import com.tech.quranapp.data.remote.model.SurahModel
 import com.tech.quranapp.databinding.FragmentHomeBinding
+import com.tech.quranapp.ui.surahdetails.DetailsFragment
 import com.tech.quranapp.util.ProgressLoading
+import com.tech.quranapp.util.replaceFragment
 import com.tech.quranapp.util.setLinearLayoutRecyclerView
 import com.tech.quranapp.util.showToast
 import com.tech.quranapp.utils.NetworkState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractionListener {
     override val bindingInflater : (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding =
         FragmentHomeBinding::inflate
     override val logTag : String = this::class.java.simpleName
@@ -39,7 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 NetworkState.Status.SUCCESS -> {
                     val surahModel = it.data as SurahModel
-                    homeAdapter = HomeAdapter(surahModel.data as List<SurahData>)
+                    homeAdapter = HomeAdapter(surahModel.data as List<SurahData>, this)
                     if (surahModel.data.isEmpty()) {
                         binding?.surahRecyclerView?.visibility = View.GONE
                         binding?.placeHolder?.visibility = View.VISIBLE
@@ -57,5 +60,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
     }
+
+    override fun onClickSurah(surah : SurahData) {
+        val detailsFragment = DetailsFragment.newInstance(surah.toString())
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, detailsFragment)
+            .addToBackStack(null)
+            .commit()    }
 
 }

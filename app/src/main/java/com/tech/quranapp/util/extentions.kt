@@ -22,3 +22,9 @@ fun Fragment.setLinearLayoutRecyclerView(recyclerView: RecyclerView?) {
 fun Fragment.showToast(message: Any?) {
     Toast.makeText(requireContext(),"$message", Toast.LENGTH_SHORT).show()
 }
+fun Fragment.replaceFragment(fragment: Fragment) {
+    if (!(fragment.isAdded))
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment).addToBackStack(null)
+            .commit()
+}
