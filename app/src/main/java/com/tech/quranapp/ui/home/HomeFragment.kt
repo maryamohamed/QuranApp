@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.tech.care.base.BaseFragment
 import com.tech.quranapp.R
+import com.tech.quranapp.data.remote.model.Surah
 import com.tech.quranapp.data.remote.model.SurahData
 import com.tech.quranapp.data.remote.model.SurahModel
 import com.tech.quranapp.databinding.FragmentHomeBinding
@@ -28,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractionListene
         setLinearLayoutRecyclerView(binding?.surahRecyclerView)
         homeViewModel.getSurah()
         observers()
+
     }
 
     override fun addCallbacks() {
@@ -48,6 +51,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractionListene
                         binding?.placeHolder?.visibility = View.VISIBLE
                     }
                     binding?.surahRecyclerView?.adapter = homeAdapter
+
                     ProgressLoading.dismiss()
                 }
 
@@ -61,11 +65,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractionListene
         }
     }
 
-    override fun onClickSurah(surah : SurahData) {
-        val detailsFragment = DetailsFragment.newInstance(surah.toString())
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, detailsFragment)
-            .addToBackStack(null)
-            .commit()    }
+
+    override fun onClickSurah(surah: SurahData) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToDetailsFragment("surah.toString()")
+        )
+
+    }
 
 }
+

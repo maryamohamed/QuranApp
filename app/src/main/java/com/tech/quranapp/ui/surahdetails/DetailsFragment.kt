@@ -13,7 +13,7 @@ import com.tech.quranapp.data.remote.model.SurahData
 import com.tech.quranapp.data.remote.model.SurahModel
 import com.tech.quranapp.databinding.FragmentDetailsBinding
 import com.tech.quranapp.databinding.FragmentHomeBinding
-import com.tech.quranapp.ui.home.HomeAdapter
+import com.tech.quranapp.ui.home.HomeFragmentDirections
 import com.tech.quranapp.ui.home.HomeViewModel
 import com.tech.quranapp.util.ProgressLoading
 import com.tech.quranapp.util.setLinearLayoutRecyclerView
@@ -28,14 +28,16 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
     override val logTag : String = this::class.java.simpleName
     private val detailsViewModel : DetailsViewModel by viewModels()
     private var detailsAdapter : DetailsAdapter? = null
-    private lateinit var surah : Surah
+    private lateinit var surah : String
 
 
     override fun initialize() {
         setLinearLayoutRecyclerView(binding?.ayatRecyclerView)
-        detailsViewModel.loadAyatData(surah)
+        surah = DetailsFragmentArgs.fromBundle(requireArguments()).surah
+        detailsViewModel.loadAyatData()
         observers()
     }
+
 
     override fun addCallbacks() {
     }

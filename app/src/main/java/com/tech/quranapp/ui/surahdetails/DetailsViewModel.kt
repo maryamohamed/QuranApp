@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tech.quranapp.data.remote.model.Ayah
 import com.tech.quranapp.data.remote.model.Surah
+import com.tech.quranapp.data.remote.model.SurahData
 import com.tech.quranapp.networking.RetrofitConnection
 import com.tech.quranapp.utils.NetworkState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,7 @@ class DetailsViewModel @Inject constructor(private val retrofitConnection : Retr
 
     private val _ayatData = MutableLiveData<NetworkState>()
     val ayatData get() = _ayatData
-    fun loadAyatData(surah : Surah){
+    fun loadAyatData(){
         _ayatData.postValue(NetworkState.LOADING)
         viewModelScope.launch(Dispatchers.IO) {
             try {
