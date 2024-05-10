@@ -36,12 +36,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.tech.quranapp.ui.surahdetails.DetailsFragment"
-        android:label="DetailsFragment">
-        <argument
-            android:name="surah"
-            app:argType="string" />
-
-    </fragment>
+        android:label="DetailsFragment"/>
 
 
 </navigation>

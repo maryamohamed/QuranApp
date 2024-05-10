@@ -33,7 +33,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
 
     override fun initialize() {
         setLinearLayoutRecyclerView(binding?.ayatRecyclerView)
-        surah = DetailsFragmentArgs.fromBundle(requireArguments()).surah
+      //  surah = DetailsFragmentArgs.fromBundle(requireArguments()).surah
         detailsViewModel.loadAyatData()
         observers()
     }
