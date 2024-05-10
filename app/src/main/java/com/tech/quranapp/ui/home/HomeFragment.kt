@@ -9,6 +9,7 @@ import com.tech.care.base.BaseFragment
 import com.tech.quranapp.R
 import com.tech.quranapp.data.remote.model.Surah
 import com.tech.quranapp.data.remote.model.SurahData
+import com.tech.quranapp.data.remote.model.SurahDetailsResponse
 import com.tech.quranapp.data.remote.model.SurahModel
 import com.tech.quranapp.databinding.FragmentHomeBinding
 import com.tech.quranapp.ui.surahdetails.DetailsFragment
@@ -16,7 +17,7 @@ import com.tech.quranapp.util.ProgressLoading
 import com.tech.quranapp.util.replaceFragment
 import com.tech.quranapp.util.setLinearLayoutRecyclerView
 import com.tech.quranapp.util.showToast
-import com.tech.quranapp.utils.NetworkState
+import com.tech.quranapp.util.NetworkState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

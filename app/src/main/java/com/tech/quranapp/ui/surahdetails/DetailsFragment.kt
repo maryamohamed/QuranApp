@@ -1,24 +1,15 @@
 package com.tech.quranapp.ui.surahdetails
 
+//import com.tech.quranapp.ui.home.HomeFragmentDirections
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.tech.care.base.BaseFragment
-import com.tech.quranapp.R
-import com.tech.quranapp.data.remote.model.Surah
-import com.tech.quranapp.data.remote.model.SurahData
-import com.tech.quranapp.data.remote.model.SurahModel
 import com.tech.quranapp.databinding.FragmentDetailsBinding
-import com.tech.quranapp.databinding.FragmentHomeBinding
-import com.tech.quranapp.ui.home.HomeFragmentDirections
-import com.tech.quranapp.ui.home.HomeViewModel
-import com.tech.quranapp.util.ProgressLoading
+import com.tech.quranapp.util.NetworkState
 import com.tech.quranapp.util.setLinearLayoutRecyclerView
 import com.tech.quranapp.util.showToast
-import com.tech.quranapp.utils.NetworkState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,13 +19,13 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
     override val logTag : String = this::class.java.simpleName
     private val detailsViewModel : DetailsViewModel by viewModels()
     private var detailsAdapter : DetailsAdapter? = null
-    private lateinit var surah : String
+    private var surahId = 0
 
 
     override fun initialize() {
         setLinearLayoutRecyclerView(binding?.ayatRecyclerView)
-      //  surah = DetailsFragmentArgs.fromBundle(requireArguments()).surah
-        detailsViewModel.loadAyatData()
+//        surahId = DetailsFragmentArgs.fromBundle(requireArguments()).SurahDetailsResponse
+        detailsViewModel.loadAyahsData(surahId)
         observers()
     }
 
@@ -42,17 +33,17 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
     override fun addCallbacks() {
     }
     private fun observers() {
-        detailsViewModel.ayatData.observe(viewLifecycleOwner) {
+        detailsViewModel.ayahsData.observe(viewLifecycleOwner) {
             when (it.status) {
-                com.tech.quranapp.utils.NetworkState.Status.RUNNING -> {
+                NetworkState.Status.RUNNING -> {
                     com.tech.quranapp.util.ProgressLoading.show(requireActivity())
                 }
 
-                com.tech.quranapp.utils.NetworkState.Status.SUCCESS -> {
-                    val surahData = it.data as com.tech.quranapp.data.remote.model.SurahData
+                NetworkState.Status.SUCCESS -> {
+                    val surahDetails = it.data as com.tech.quranapp.data.remote.model.SurahDetailsResponse
                     binding?.apply {
-                        surahName.text = surahData.name
-                        surahType.text = surahData.revelationType
+                        surahName.text = surahDetails.arabicName
+                        surahType.text = surahDetails.type
                         ayatRecyclerView.adapter = detailsAdapter
                     }
                 }

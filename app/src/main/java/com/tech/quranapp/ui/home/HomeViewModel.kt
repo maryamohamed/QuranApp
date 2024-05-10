@@ -1,11 +1,10 @@
 package com.tech.quranapp.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tech.quranapp.networking.RetrofitConnection
-import com.tech.quranapp.utils.NetworkState
+import com.tech.quranapp.util.NetworkState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

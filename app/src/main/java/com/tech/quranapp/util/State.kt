@@ -1,4 +1,4 @@
-package com.tech.quranapp.utils
+package com.tech.quranapp.util
 
 sealed class State<out T>{
     data class Success<T>(val data: T?) : State<T>()

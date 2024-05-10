@@ -1,8 +1,6 @@
-package com.tech.quranapp.utils
+package com.tech.quranapp.util
 
-import retrofit2.HttpException
 import java.io.IOException
-import java.net.SocketTimeoutException
 
 class NetworkState (val status: Status, val massage: Any? = null, val data: Any? = null) {
 
@@ -21,11 +19,7 @@ class NetworkState (val status: Status, val massage: Any? = null, val data: Any?
             return when (throwable) {
                 is IOException -> {
                     NetworkState(Status.FAILED, "No Connection ")
-                } is SocketTimeoutException -> {
-                    NetworkState(Status.FAILED, "Bad Connection")
-                } is HttpException -> {
-                    NetworkState(Status.FAILED, "ادخل رقم قومي صحيح ")
-                } else -> {
+                }  else -> {
                     NetworkState(Status.FAILED, "Error")
                 }
             }
