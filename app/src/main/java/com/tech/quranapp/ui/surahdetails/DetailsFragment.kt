@@ -2,12 +2,20 @@ package com.tech.quranapp.ui.surahdetails
 
 //import com.tech.quranapp.ui.home.HomeFragmentDirections
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.tech.care.base.BaseFragment
+import com.tech.quranapp.data.remote.model.AyahDetails
+import com.tech.quranapp.data.remote.model.DetailsModel
+import com.tech.quranapp.data.remote.model.SurahData
+import com.tech.quranapp.data.remote.model.SurahDetailsResponse
+import com.tech.quranapp.data.remote.model.VerseModel
 import com.tech.quranapp.databinding.FragmentDetailsBinding
 import com.tech.quranapp.util.NetworkState
+import com.tech.quranapp.util.ProgressLoading
 import com.tech.quranapp.util.setLinearLayoutRecyclerView
 import com.tech.quranapp.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +32,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
 
     override fun initialize() {
         setLinearLayoutRecyclerView(binding?.ayatRecyclerView)
-//        surahId = DetailsFragmentArgs.fromBundle(requireArguments()).SurahDetailsResponse
+        surahId = DetailsFragmentArgs.fromBundle(requireArguments()).SurahId
         detailsViewModel.loadAyahsData(surahId)
         observers()
     }
@@ -40,19 +48,26 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
                 }
 
                 NetworkState.Status.SUCCESS -> {
-                    val surahDetails = it.data as com.tech.quranapp.data.remote.model.SurahDetailsResponse
+                    val surahDetails = it.data as DetailsModel
+                    detailsAdapter= DetailsAdapter(surahDetails.data.ayahs as ArrayList<AyahDetails>)
+
                     binding?.apply {
-                        surahName.text = surahDetails.arabicName
-                        surahType.text = surahDetails.type
+                        surahName.text = surahDetails.data.name
+                        surahType.text = surahDetails.data.revelationType
+
                         ayatRecyclerView.adapter = detailsAdapter
                     }
+                    ProgressLoading.dismiss()
+
+
+
                 }
 
                 else -> {
                     it.massage?.let { it1 ->
                         showToast(it1.toString())
                     }
-                    com.tech.quranapp.util.ProgressLoading.dismiss()
+                    ProgressLoading.dismiss()
                 }
             }
         }

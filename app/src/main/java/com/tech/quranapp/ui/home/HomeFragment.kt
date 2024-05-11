@@ -69,7 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractionListene
 
     override fun onClickSurah(surah: SurahData) {
         findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToDetailsFragment()
+            HomeFragmentDirections.actionHomeFragmentToDetailsFragment(surah.number!!)
         )
 
     }
