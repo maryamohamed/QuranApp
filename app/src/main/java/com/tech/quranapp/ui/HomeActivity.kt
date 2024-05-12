@@ -1,7 +1,7 @@
 package com.tech.quranapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.tech.quranapp.R
 
 class HomeActivity : AppCompatActivity() {

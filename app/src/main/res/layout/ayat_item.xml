@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/space8"
     android:layoutDirection="rtl"
-    android:padding="16dp"
+    android:padding="@dimen/space16"
     app:cardBackgroundColor="@color/secondary2"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="16dp">
+    app:cardCornerRadius="@dimen/space16"
+    app:cardElevation="@dimen/space16">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="@dimen/space8">
 
         <RelativeLayout
             android:layout_width="50dp"
@@ -27,20 +27,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_margin="@dimen/space4"
                 android:text="1"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/text14"
                 android:textStyle="bold" />
 
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/space4"
+            android:layout_marginTop="@dimen/space8"
+            android:layout_marginEnd="@dimen/space16"
+            android:layout_marginBottom="@dimen/space8"
             android:layout_weight="2"
             android:orientation="vertical">
 
@@ -51,16 +52,9 @@
                 android:text="fathia"
                 android:textColor="@color/primary1"
                 android:textDirection="rtl"
-                android:textSize="12sp"
+                android:textSize="@dimen/text16"
                 android:textStyle="bold" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/total_ayat"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:text="7 aya"-->
-            <!--                android:textColor="@color/primary1"-->
-            <!--                android:textDirection="rtl" />-->
 
         </LinearLayout>
     </LinearLayout>

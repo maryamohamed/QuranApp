@@ -2,17 +2,12 @@ package com.tech.quranapp.ui.surahdetails
 
 //import com.tech.quranapp.ui.home.HomeFragmentDirections
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.tech.care.base.BaseFragment
 import com.tech.quranapp.data.remote.model.AyahDetails
 import com.tech.quranapp.data.remote.model.DetailsModel
-import com.tech.quranapp.data.remote.model.SurahData
-import com.tech.quranapp.data.remote.model.SurahDetailsResponse
-import com.tech.quranapp.data.remote.model.VerseModel
 import com.tech.quranapp.databinding.FragmentDetailsBinding
 import com.tech.quranapp.util.NetworkState
 import com.tech.quranapp.util.ProgressLoading
@@ -21,7 +16,7 @@ import com.tech.quranapp.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     override val bindingInflater : (LayoutInflater, ViewGroup?, Boolean) -> FragmentDetailsBinding
         get() = FragmentDetailsBinding::inflate
     override val logTag : String = this::class.java.simpleName
@@ -40,6 +35,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
 
     override fun addCallbacks() {
     }
+
     private fun observers() {
         detailsViewModel.ayahsData.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -49,7 +45,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
 
                 NetworkState.Status.SUCCESS -> {
                     val surahDetails = it.data as DetailsModel
-                    detailsAdapter= DetailsAdapter(surahDetails.data.ayahs as ArrayList<AyahDetails>)
+                    detailsAdapter =
+                        DetailsAdapter(surahDetails.data.ayahs as ArrayList<AyahDetails>)
 
                     binding?.apply {
                         surahName.text = surahDetails.data.name
@@ -58,7 +55,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
                         ayatRecyclerView.adapter = detailsAdapter
                     }
                     ProgressLoading.dismiss()
-
 
 
                 }
@@ -72,9 +68,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>()  {
             }
         }
     }
+
     companion object {
         private const val SURAH = "surah"
-        fun newInstance(surah: String) = DetailsFragment().apply {
+        fun newInstance(surah : String) = DetailsFragment().apply {
             arguments = Bundle().apply {
                 putString(SURAH, surah)
             }

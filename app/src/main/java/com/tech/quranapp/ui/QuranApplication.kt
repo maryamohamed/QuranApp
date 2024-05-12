@@ -5,4 +5,4 @@ import dagger.hilt.android.HiltAndroidApp
 
 
 @HiltAndroidApp
-class QuranApplication: Application()
+class QuranApplication : Application()

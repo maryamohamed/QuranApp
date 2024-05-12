@@ -29,6 +29,7 @@ class FirstScreen : Fragment() {
 
         onClicks()
     }
+
     private fun onClicks() {
         binding.nextArrow.setOnClickListener {
             declareViewPager(1)
@@ -36,7 +37,9 @@ class FirstScreen : Fragment() {
         binding.skipButton.setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_homeFragment)
         }
+        onBoardingFinished()
     }
+
     private fun onBoardingFinished() {
         val sharedPref =
             requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)

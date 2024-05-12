@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tech.care.base.SimpleBaseAdapter
 import com.tech.quranapp.data.remote.model.SurahData
-import com.tech.quranapp.data.remote.model.SurahDetailsResponse
 import com.tech.quranapp.databinding.SurahItemBinding
 import com.tech.quranapp.util.toAyaFormat
 
@@ -32,6 +31,7 @@ class HomeAdapter(
         }
     }
 }
+
 interface HomeInteractionListener : SimpleBaseAdapter.BaseInteractionListener {
     fun onClickSurah(surah : SurahData)
 }

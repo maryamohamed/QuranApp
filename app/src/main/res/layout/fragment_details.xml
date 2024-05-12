@@ -18,17 +18,19 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ayatRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layoutDirection="rtl"
         android:visibility="visible"
+        android:layout_marginHorizontal="@dimen/space16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/ayat_item"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:listitem="@layout/ayat_item" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/toolbar"
@@ -46,7 +48,7 @@
         android:id="@+id/surah_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="الفاتحه"
+        tools:text="الفاتحه"
         android:textColor="@color/white"
         android:textSize="@dimen/space24"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -58,7 +60,7 @@
         android:id="@+id/surah_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="مكيه"
+        tools:text="مكيه"
         android:textColor="@color/white"
         android:textSize="@dimen/space12"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
